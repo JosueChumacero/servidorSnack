@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pasteleria.Servicio;
-
-import com.pasteleria.TO.TOCategoriaI;
-import java.util.List;
+package com.pasteleria.TO;
 
 /**
  *
  * @author ChUmA
  */
-public interface CategoriaServicioI {
+public interface TOTipoProductoI {
 
-    public List<TOCategoriaI> getCategorias();
+    Long getIdTipoproducto();
+
+    String getDescripcion();
 
 }

@@ -5,7 +5,7 @@
  */
 package com.pasteleria.controlador;
 
-import com.pasteleria.Servicio.TO.TOTipoProducto;
+import com.pasteleria.TO.TOTipoProductoI;
 import com.pasteleria.Servicio.TipoProductoServicioI;
 import com.pasteleria.modelo.TipoProducto;
 import java.util.List;
@@ -26,7 +26,7 @@ public class TipoProductoController {
     private TipoProductoServicioI tipoProductoServicioI;
     
     @RequestMapping(value = "/tipoProducto", method = RequestMethod.GET)
-    public List<TOTipoProducto> getUsers(@RequestParam("idCategoria") Long idCategoria ) {
+    public List<TOTipoProductoI> getUsers(@RequestParam("idCategoria") Long idCategoria ) {
         return tipoProductoServicioI.getTipoProducto(idCategoria);
     }
     

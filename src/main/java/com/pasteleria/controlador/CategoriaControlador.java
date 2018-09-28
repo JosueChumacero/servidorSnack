@@ -6,7 +6,7 @@
 package com.pasteleria.controlador;
 
 import com.pasteleria.Servicio.CategoriaServicioI;
-import com.pasteleria.Servicio.TO.TOCategoriaI;
+import com.pasteleria.TO.TOCategoriaI;
 import com.pasteleria.modelo.Categoria;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,17 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pasteleria.Servicio;
-
-import com.pasteleria.TO.TOCategoriaI;
-import java.util.List;
+package com.pasteleria.helper;
 
 /**
  *
  * @author ChUmA
  */
-public interface CategoriaServicioI {
+public class HelperCodigos {
 
-    public List<TOCategoriaI> getCategorias();
+    public static String ESTADO_ACTIVO  = "S";
 
 }

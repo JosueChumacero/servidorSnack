@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pasteleria.Servicio.TO;
+package com.pasteleria.TO;
 
 import java.math.BigDecimal;
 

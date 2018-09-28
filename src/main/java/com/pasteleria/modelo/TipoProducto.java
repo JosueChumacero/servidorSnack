@@ -49,7 +49,7 @@ public class TipoProducto implements Serializable {
     @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
     @ManyToOne(optional = false)
     private Categoria idCategoria;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoproducto")
+    @OneToMany(mappedBy = "idTipoproducto")
     private List<Producto> productoList;
 
     public TipoProducto() {

@@ -3,16 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pasteleria.Servicio.TO;
+package com.pasteleria.TO;
+
+import java.math.BigDecimal;
 
 /**
  *
  * @author ChUmA
  */
-public interface TOTipoProducto {
+public interface TOProductoI {
 
-    Long getIdTipoproducto();
+    Long getIdProducto();
 
     String getDescripcion();
 
+    BigDecimal getPrecio();
 }

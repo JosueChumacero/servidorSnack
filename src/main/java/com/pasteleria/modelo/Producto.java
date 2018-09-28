@@ -50,11 +50,10 @@ public class Producto implements Serializable {
     @Column(name = "precio")
     private BigDecimal precio;
     @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 1)
     @Column(name = "estado")
     private String estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
+    @OneToMany(mappedBy = "idProducto")
     private List<Venta> ventaList;
     @JoinColumn(name = "id_tipoproducto", referencedColumnName = "id_tipoproducto")
     @ManyToOne(optional = false)

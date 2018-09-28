@@ -5,9 +5,11 @@
  */
 package com.pasteleria.Servicio;
 
+import com.pasteleria.TO.TOProductoI;
 import com.pasteleria.dao.ProductoDaoI;
-import com.pasteleria.dao.TipoProductoDaoI;
+import com.pasteleria.helper.HelperCodigos;
 import com.pasteleria.modelo.Producto;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,13 @@ public class ProductoServicio implements ProductoServicioI {
     @Autowired
     private ProductoDaoI productoDaoI;
 
+    @Override
     public void save(Producto producto) {
         productoDaoI.save(producto);
+    }
+
+    @Override
+    public List<TOProductoI> listarProductos() {
+        return productoDaoI.findByEstado(HelperCodigos.ESTADO_ACTIVO);
     }
 }

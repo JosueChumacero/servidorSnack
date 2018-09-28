@@ -5,7 +5,7 @@
  */
 package com.pasteleria.Servicio;
 
-import com.pasteleria.Servicio.TO.TOCategoriaI;
+import com.pasteleria.TO.TOCategoriaI;
 import com.pasteleria.dao.CategoriaDaoI;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

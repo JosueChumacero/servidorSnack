@@ -5,7 +5,7 @@
  */
 package com.pasteleria.Servicio;
 
-import com.pasteleria.Servicio.TO.TOTipoProducto;
+import com.pasteleria.TO.TOTipoProductoI;
 import com.pasteleria.dao.TipoProductoDaoI;
 import com.pasteleria.modelo.Categoria;
 import com.pasteleria.modelo.TipoProducto;
@@ -24,7 +24,7 @@ public class TipoProductoServicio implements TipoProductoServicioI {
     private TipoProductoDaoI tipoProductoDaoI;
 
     @Override
-    public List<TOTipoProducto> getTipoProducto(Long idCategoria) {
+    public List<TOTipoProductoI> getTipoProducto(Long idCategoria) {
         return tipoProductoDaoI.findByIdCategoriaAndEstado(new Categoria(idCategoria),"S");
     }
 

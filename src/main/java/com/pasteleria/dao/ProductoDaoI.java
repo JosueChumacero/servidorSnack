@@ -5,7 +5,9 @@
  */
 package com.pasteleria.dao;
 
+import com.pasteleria.TO.TOProductoI;
 import com.pasteleria.modelo.Producto;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,4 +18,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductoDaoI extends JpaRepository<Producto, Long>{
     
+    List<TOProductoI> findByEstado(String estado);
 }
