@@ -14,5 +14,7 @@ public interface TOTipoProductoI {
     Long getIdTipoproducto();
 
     String getDescripcion();
+    
+    TOCategoriaI getIdCategoria();
 
 }

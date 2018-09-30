@@ -32,4 +32,10 @@ public class ProductoServicio implements ProductoServicioI {
     public List<TOProductoI> listarProductos() {
         return productoDaoI.findByEstado(HelperCodigos.ESTADO_ACTIVO);
     }
+
+    @Override
+    public void delete(Long idProducot) {
+        productoDaoI.deleteById(idProducot);
+    }
+    
 }

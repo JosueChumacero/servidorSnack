@@ -18,4 +18,6 @@ public interface TOProductoI {
     String getDescripcion();
 
     BigDecimal getPrecio();
+    
+    TOTipoProductoI getIdTipoproducto();
 }

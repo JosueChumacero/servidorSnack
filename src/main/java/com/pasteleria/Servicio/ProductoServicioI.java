@@ -18,5 +18,7 @@ public interface ProductoServicioI {
     void save(Producto producto);
     
     List<TOProductoI> listarProductos();
+    
+    void delete(Long idProducot);
 
 }

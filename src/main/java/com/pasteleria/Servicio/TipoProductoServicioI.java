@@ -6,6 +6,7 @@
 package com.pasteleria.Servicio;
 
 import com.pasteleria.TO.TOTipoProductoI;
+import com.pasteleria.modelo.TipoProducto;
 import java.util.List;
 
 /**
@@ -15,4 +16,8 @@ import java.util.List;
 public interface TipoProductoServicioI {
     
     public List<TOTipoProductoI> getTipoProducto(Long idCategoria);
+    
+    public List<TOTipoProductoI> getTipoProductos();
+    
+    public void save(TipoProducto tipoProducto);
 }

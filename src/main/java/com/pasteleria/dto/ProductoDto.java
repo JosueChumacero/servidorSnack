@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pasteleria.TO;
+package com.pasteleria.dto;
 
 import java.math.BigDecimal;
 
@@ -11,7 +11,8 @@ import java.math.BigDecimal;
  *
  * @author ChUmA
  */
-public class ProductoDTO {
+public class ProductoDto {
+    
     private Long idProducto;
     private String descripcion;
     private BigDecimal precio;
@@ -48,6 +49,7 @@ public class ProductoDTO {
     public void setIdTipoproducto(Long idTipoproducto) {
         this.idTipoproducto = idTipoproducto;
     }
+    
     
     
 }

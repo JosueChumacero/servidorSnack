@@ -7,6 +7,7 @@ package com.pasteleria.Servicio;
 
 import com.pasteleria.TO.TOTipoProductoI;
 import com.pasteleria.dao.TipoProductoDaoI;
+import com.pasteleria.helper.HelperCodigos;
 import com.pasteleria.modelo.Categoria;
 import com.pasteleria.modelo.TipoProducto;
 import java.util.List;
@@ -25,7 +26,16 @@ public class TipoProductoServicio implements TipoProductoServicioI {
 
     @Override
     public List<TOTipoProductoI> getTipoProducto(Long idCategoria) {
-        return tipoProductoDaoI.findByIdCategoriaAndEstado(new Categoria(idCategoria),"S");
+        return tipoProductoDaoI.findByIdCategoriaAndEstado(new Categoria(idCategoria), HelperCodigos.ESTADO_ACTIVO);
     }
 
+    @Override
+    public List<TOTipoProductoI> getTipoProductos() {
+        return tipoProductoDaoI.findByEstado(HelperCodigos.ESTADO_ACTIVO);
+    }
+
+    @Override
+    public void save(TipoProducto tipoProducto) {
+        tipoProductoDaoI.save(tipoProducto);
+    }
 }
