@@ -17,8 +17,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -30,8 +28,6 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "producto")
-@NamedQueries({
-    @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p")})
 public class Producto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -54,7 +50,7 @@ public class Producto implements Serializable {
     @Column(name = "estado")
     private String estado;
     @OneToMany(mappedBy = "idProducto")
-    private List<Venta> ventaList;
+    private List<DetalleVenta> detalleVentaList;
     @JoinColumn(name = "id_tipoproducto", referencedColumnName = "id_tipoproducto")
     @ManyToOne(optional = false)
     private TipoProducto idTipoproducto;
@@ -105,14 +101,6 @@ public class Producto implements Serializable {
         this.estado = estado;
     }
 
-    public List<Venta> getVentaList() {
-        return ventaList;
-    }
-
-    public void setVentaList(List<Venta> ventaList) {
-        this.ventaList = ventaList;
-    }
-
     public TipoProducto getIdTipoproducto() {
         return idTipoproducto;
     }
@@ -121,6 +109,14 @@ public class Producto implements Serializable {
         this.idTipoproducto = idTipoproducto;
     }
 
+    public List<DetalleVenta> getDetalleVentaList() {
+        return detalleVentaList;
+    }
+
+    public void setDetalleVentaList(List<DetalleVenta> detalleVentaList) {
+        this.detalleVentaList = detalleVentaList;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

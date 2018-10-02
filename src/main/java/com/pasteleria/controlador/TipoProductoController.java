@@ -8,6 +8,7 @@ package com.pasteleria.controlador;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pasteleria.TO.TOTipoProductoI;
 import com.pasteleria.Servicio.TipoProductoServicioI;
+import com.pasteleria.excepcion.ExcepcionNegocio;
 import com.pasteleria.modelo.TipoProducto;
 import com.pasteleria.util.RestResponse;
 import java.io.IOException;
@@ -26,33 +27,35 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class TipoProductoController {
-    
+
     @Autowired
     private TipoProductoServicioI tipoProductoServicioI;
     protected ObjectMapper mapper;
-    
+
     @RequestMapping(value = "/tipoProductoCategoria", method = RequestMethod.GET)
-    public List<TOTipoProductoI> getTipoProductoCategoria(@RequestParam("idCategoria") Long idCategoria ) {
+    public List<TOTipoProductoI> getTipoProductoCategoria(@RequestParam("idCategoria") Long idCategoria) {
         return tipoProductoServicioI.getTipoProducto(idCategoria);
     }
-    
+
     @RequestMapping(value = "/tipoProducto", method = RequestMethod.GET)
     public List<TOTipoProductoI> getTipoProducto() {
         return tipoProductoServicioI.getTipoProductos();
     }
-    
-     @RequestMapping(value = "/tipoProducto", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/tipoProducto", method = RequestMethod.POST)
     public RestResponse save(@RequestBody String tipProductoJson) {
         try {
             mapper = new ObjectMapper();
             TipoProducto tipoProducto = mapper.readValue(tipProductoJson, TipoProducto.class);
             tipoProductoServicioI.save(tipoProducto);
             return new RestResponse(HttpStatus.OK.value(), "Grabacion Exitosa");
-        } catch (IOException ex) {
+        } catch (ExcepcionNegocio ex) {
             return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(), ex.getMessage());
+        } catch (IOException ex) {
+            return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(), "Error en guardar Tipo de Producto");
         } catch (Exception ex) {
             return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(), "algunos campos obligatorios estan nulos");
         }
     }
-    
+
 }

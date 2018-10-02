@@ -6,19 +6,17 @@
 package com.pasteleria.modelo;
 
 import java.io.Serializable;
-import java.math.BigInteger;
+import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -26,24 +24,27 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "venta")
-@NamedQueries({
-    @NamedQuery(name = "Venta.findAll", query = "SELECT v FROM Venta v")})
 public class Venta implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_venta")
     private Long idVenta;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "precio")
-    private long precio;
-    @Column(name = "cantidad")
-    private BigInteger cantidad;
-    @JoinColumn(name = "id_producto", referencedColumnName = "id_producto")
-    @ManyToOne(optional = false)
-    private Producto idProducto;
+    @Column(name = "total")
+    private long total;
+    @Basic(optional = false)
+    @Column(name = "nombre")
+    private String nombre;
+    @Basic(optional = false)
+    @Column(name = "fecha")
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
+    @Basic(optional = false)
+    @Column(name = "estado")
+    private String estado;
+    @OneToMany(mappedBy = "venta")
+    private List<DetalleVenta> detalleVentaList;
 
     public Venta() {
     }
@@ -52,9 +53,12 @@ public class Venta implements Serializable {
         this.idVenta = idVenta;
     }
 
-    public Venta(Long idVenta, long precio) {
+    public Venta(Long idVenta, long total, String nombre, Date fecha, String estado) {
         this.idVenta = idVenta;
-        this.precio = precio;
+        this.total = total;
+        this.nombre = nombre;
+        this.fecha = fecha;
+        this.estado = estado;
     }
 
     public Long getIdVenta() {
@@ -65,28 +69,44 @@ public class Venta implements Serializable {
         this.idVenta = idVenta;
     }
 
-    public long getPrecio() {
-        return precio;
+    public long getTotal() {
+        return total;
     }
 
-    public void setPrecio(long precio) {
-        this.precio = precio;
+    public void setTotal(long total) {
+        this.total = total;
     }
 
-    public BigInteger getCantidad() {
-        return cantidad;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setCantidad(BigInteger cantidad) {
-        this.cantidad = cantidad;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public Producto getIdProducto() {
-        return idProducto;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setIdProducto(Producto idProducto) {
-        this.idProducto = idProducto;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public List<DetalleVenta> getDetalleVentaList() {
+        return detalleVentaList;
+    }
+
+    public void setDetalleVentaList(List<DetalleVenta> detalleVentaList) {
+        this.detalleVentaList = detalleVentaList;
     }
 
     @Override
@@ -111,7 +131,7 @@ public class Venta implements Serializable {
 
     @Override
     public String toString() {
-        return "com.pasteleria.modelo.Venta[ idVenta=" + idVenta + " ]";
+        return "javaapplication2.Venta[ idVenta=" + idVenta + " ]";
     }
     
 }

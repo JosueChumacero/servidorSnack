@@ -8,15 +8,13 @@ package com.pasteleria.controlador;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pasteleria.Servicio.ProductoServicioI;
 import com.pasteleria.TO.TOProductoI;
-import com.pasteleria.helper.HelperCodigos;
+import com.pasteleria.excepcion.ExcepcionNegocio;
 import com.pasteleria.util.RestResponse;
 import com.pasteleria.modelo.Producto;
-import com.pasteleria.modelo.TipoProducto;
 import java.io.IOException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,8 +39,10 @@ public class ProductoControlador {
             Producto producto = mapper.readValue(productoJson, Producto.class);
             productoServicioI.save(producto);
             return new RestResponse(HttpStatus.OK.value(), "Grabacion Exitosa");
-        } catch (IOException ex) {
+        } catch (ExcepcionNegocio ex) {
             return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(), ex.getMessage());
+        } catch (IOException ex) {
+            return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(), "Error al guardar producto");
         } catch (Exception ex) {
             return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(), "algunos campos obligatorios estan nulos");
         }

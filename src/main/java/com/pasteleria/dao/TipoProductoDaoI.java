@@ -20,6 +20,8 @@ import org.springframework.stereotype.Repository;
 public interface TipoProductoDaoI extends JpaRepository<TipoProducto, Long> {
 
     List<TOTipoProductoI> findByIdCategoriaAndEstado(Categoria categoria, String estado);
-    
+
     List<TOTipoProductoI> findByEstado(String estado);
+
+    List<TOTipoProductoI> findByIdCategoriaAndEstadoAndDescripcion(Categoria categoria, String estado, String descripcion);
 }

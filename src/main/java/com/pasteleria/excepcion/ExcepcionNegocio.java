@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pasteleria.helper;
+package com.pasteleria.excepcion;
 
 /**
  *
  * @author ChUmA
  */
-public class HelperCodigos {
-
-    public static String ESTADO_ACTIVO  = "S";
-    public static String ESTADO_INACTIVO  = "N";
-
+public class ExcepcionNegocio extends Exception{
+    
+    public ExcepcionNegocio(String mensaje){
+        super(mensaje);
+    }
 }

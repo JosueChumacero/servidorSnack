@@ -6,7 +6,9 @@
 package com.pasteleria.Servicio;
 
 import com.pasteleria.TO.TOProductoI;
+import com.pasteleria.excepcion.ExcepcionNegocio;
 import com.pasteleria.modelo.Producto;
+import com.pasteleria.modelo.TipoProducto;
 import java.util.List;
 
 /**
@@ -15,10 +17,8 @@ import java.util.List;
  */
 public interface ProductoServicioI {
 
-    void save(Producto producto);
-    
+    public void save(Producto producto) throws ExcepcionNegocio;
+
     List<TOProductoI> listarProductos();
-    
-    void delete(Long idProducot);
 
 }

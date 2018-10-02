@@ -6,6 +6,7 @@
 package com.pasteleria.Servicio;
 
 import com.pasteleria.TO.TOTipoProductoI;
+import com.pasteleria.excepcion.ExcepcionNegocio;
 import com.pasteleria.modelo.TipoProducto;
 import java.util.List;
 
@@ -14,10 +15,10 @@ import java.util.List;
  * @author ChUmA
  */
 public interface TipoProductoServicioI {
-    
+
     public List<TOTipoProductoI> getTipoProducto(Long idCategoria);
-    
+
     public List<TOTipoProductoI> getTipoProductos();
-    
-    public void save(TipoProducto tipoProducto);
+
+    public void save(TipoProducto tipoProducto) throws ExcepcionNegocio;
 }
