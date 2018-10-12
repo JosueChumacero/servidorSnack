@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pasteleria.Servicio.ProductoServicioI;
 import com.pasteleria.TO.TOProductoI;
 import com.pasteleria.excepcion.ExcepcionNegocio;
+import com.pasteleria.helper.HelperCodigos;
 import com.pasteleria.util.RestResponse;
 import com.pasteleria.modelo.Producto;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -26,12 +28,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class ProductoControlador {
-
+    
     @Autowired
     private ProductoServicioI productoServicioI;
-
+    
     protected ObjectMapper mapper;
-
+    
     @RequestMapping(value = "/producto", method = RequestMethod.POST)
     public RestResponse save(@RequestBody String productoJson) {
         try {
@@ -47,9 +49,14 @@ public class ProductoControlador {
             return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(), "algunos campos obligatorios estan nulos");
         }
     }
-
+    
     @RequestMapping(value = "/producto", method = RequestMethod.GET)
     public List<TOProductoI> getProductos() {
         return productoServicioI.listarProductos();
+    }
+    
+    @RequestMapping(value = "/productoDescripcion", method = RequestMethod.GET)
+    public List<TOProductoI> getProductos(@RequestParam("descripcion") String descripcion) {
+        return productoServicioI.findByDescripcionLike(HelperCodigos.ESTADO_ACTIVO, descripcion);
     }
 }

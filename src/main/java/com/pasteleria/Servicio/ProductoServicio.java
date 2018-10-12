@@ -52,4 +52,9 @@ public class ProductoServicio implements ProductoServicioI {
     public List<TOProductoI> listarProductos() {
         return productoDaoI.findByEstado(HelperCodigos.ESTADO_ACTIVO);
     }
+
+    @Override
+    public List<TOProductoI> findByDescripcionLike(String estado, String descripcion) {
+        return productoDaoI.findByDescripcionLike(estado, descripcion);
+    }
 }
