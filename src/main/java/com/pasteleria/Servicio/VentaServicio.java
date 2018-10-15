@@ -5,6 +5,7 @@
  */
 package com.pasteleria.Servicio;
 
+import com.pasteleria.TO.TOVentaI;
 import com.pasteleria.dao.DetalleVentaDaoI;
 import com.pasteleria.dao.VentaDaoI;
 import com.pasteleria.dto.DetalleVentaDto;
@@ -13,6 +14,7 @@ import com.pasteleria.excepcion.ExcepcionNegocio;
 import com.pasteleria.modelo.DetalleVenta;
 import com.pasteleria.modelo.DetalleVentaPK;
 import com.pasteleria.modelo.Venta;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +33,7 @@ public class VentaServicio implements VentaServicioI {
     private DetalleVentaDaoI detalleVentaDaoI;
 
     @Override
-    public void guardarVenta(VentaDto venta) throws ExcepcionNegocio{
+    public void guardarVenta(VentaDto venta) throws ExcepcionNegocio {
         try {
             Venta v = new Venta();
             v.setTotal(venta.getTotal());
@@ -39,7 +41,7 @@ public class VentaServicio implements VentaServicioI {
             v.setEstado(venta.getEstado());
             v.setNombre(venta.getNombre());
             ventaDaoI.save(v);
-            for (DetalleVentaDto detalle : venta.getDetalleVenta()) {
+            for (DetalleVentaDto detalle : venta.getDetalleVentaList()) {
                 DetalleVenta detalleventa = new DetalleVenta(new DetalleVentaPK(v.getIdVenta(), detalle.getIdProducto().getIdProducto()));
                 detalleventa.setPrecio(detalle.getIdProducto().getPrecio());
                 detalleventa.setCantidad(detalle.getCantidad());
@@ -49,7 +51,11 @@ public class VentaServicio implements VentaServicioI {
         } catch (Exception e) {
             throw new ExcepcionNegocio(e.getMessage());
         }
+    }
 
+    @Override
+    public List<TOVentaI> getVentas(String estado) {
+        return ventaDaoI.findByEstado(estado);
     }
 
 }

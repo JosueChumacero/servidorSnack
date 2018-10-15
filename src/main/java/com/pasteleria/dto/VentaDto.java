@@ -5,7 +5,6 @@
  */
 package com.pasteleria.dto;
 
-import com.pasteleria.modelo.DetalleVenta;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class VentaDto {
     private String nombre;
     private Date fecha;
     private String estado;
-    private List<DetalleVentaDto> detalleVenta;
+    private List<DetalleVentaDto> detalleVentaList;
 
     public Long getIdVenta() {
         return idVenta;
@@ -61,12 +60,12 @@ public class VentaDto {
         this.estado = estado;
     }
 
-    public List<DetalleVentaDto> getDetalleVenta() {
-        return detalleVenta;
+    public List<DetalleVentaDto> getDetalleVentaList() {
+        return detalleVentaList;
     }
 
-    public void setDetalleVenta(List<DetalleVentaDto> detalleVenta) {
-        this.detalleVenta = detalleVenta;
+    public void setDetalleVentaList(List<DetalleVentaDto> detalleVentaList) {
+        this.detalleVentaList = detalleVentaList;
     }
     
 }

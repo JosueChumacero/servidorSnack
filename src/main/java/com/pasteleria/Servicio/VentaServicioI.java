@@ -5,15 +5,18 @@
  */
 package com.pasteleria.Servicio;
 
+import com.pasteleria.TO.TOVentaI;
 import com.pasteleria.dto.VentaDto;
 import com.pasteleria.excepcion.ExcepcionNegocio;
+import java.util.List;
 
 /**
  *
  * @author ChUmA
  */
 public interface VentaServicioI {
-    
-    public void guardarVenta(VentaDto venta)  throws ExcepcionNegocio;
-    
+
+    public void guardarVenta(VentaDto venta) throws ExcepcionNegocio;
+
+    public List<TOVentaI> getVentas(String estado);
 }

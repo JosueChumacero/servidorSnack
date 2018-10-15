@@ -7,10 +7,13 @@ package com.pasteleria.controlador;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pasteleria.Servicio.VentaServicioI;
+import com.pasteleria.TO.TOVentaI;
 import com.pasteleria.dto.VentaDto;
 import com.pasteleria.excepcion.ExcepcionNegocio;
+import com.pasteleria.helper.HelperCodigos;
 import com.pasteleria.util.RestResponse;
 import java.io.IOException;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,6 +46,11 @@ public class VentasController {
         } catch (Exception ex) {
             return new RestResponse(HttpStatus.NOT_ACCEPTABLE.value(), "algunos campos obligatorios estan nulos");
         }
+    }
+
+    @RequestMapping(value = "/venta", method = RequestMethod.GET)
+    public List<TOVentaI> getVentas() {
+        return ventaServicioI.getVentas(HelperCodigos.ESTADO_ACTIVO);
     }
 
 }
